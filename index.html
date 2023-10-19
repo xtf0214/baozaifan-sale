@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>物品数量</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            transform-origin: top left;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .item span {
+            font-weight: bold;
+            margin-right: 40px;
+            margin-left: 40px;
+            transform: scale(2);
+        }
+
+        .item button {
+            padding: 5px 10px;
+            font-size: 14px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            margin: 0 20px;
+            transform: scale(2);
+            transition: background-color 0.3s;
+        }
+
+        .item button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        function increaseCount(item) {
+            console.log("increase" + item);
+            var countElement = document.getElementById(item + '-count');
+            var count = parseInt(countElement.innerText);
+            countElement.innerText = count + 1;
+            localStorage.setItem(item, count + 1);
+        }
+
+        function decreaseCount(item) {
+            console.log("decrease" + item);
+            var countElement = document.getElementById(item + '-count');
+            var count = parseInt(countElement.innerText);
+            if (count > 0) {
+                countElement.innerText = count - 1;
+                localStorage.setItem(item, count - 1);
+            }
+        }
+        function clearCounts() {
+            console.log("clear");
+            for (var item of ['A', 'B', 'C', 'D', 'E', 'F', 'G']) {
+                var countElement = document.getElementById(item + '-count');
+                countElement.innerText = 0;
+                localStorage.setItem(item, 0);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>剩余菜量</h1>
+
+    <div class="item">
+        <span>广式腊味煲仔饭: </span>
+        <span id="A-count">0</span>
+        <button onclick="increaseCount('A')">+</button>
+        <button onclick="decreaseCount('A')">-</button>
+    </div>
+
+    <div class="item">
+        <span>蒜香排骨煲仔饭: </span>
+        <span id="B-count">0</span>
+        <button onclick="increaseCount('B')">+</button>
+        <button onclick="decreaseCount('B')">-</button>
+    </div>
+
+    <div class="item">
+        <span>香辣肥牛煲仔饭: </span>
+        <span id="C-count">0</span>
+        <button onclick="increaseCount('C')">+</button>
+        <button onclick="decreaseCount('C')">-</button>
+    </div>
+
+    <div class="item">
+        <span>香菇滑鸡煲仔饭: </span>
+        <span id="D-count">0</span>
+        <button onclick="increaseCount('D')">+</button>
+        <button onclick="decreaseCount('D')">-</button>
+    </div>
+
+    <div class="item">
+        <span>梅干菜肉饼煲仔饭: </span>
+        <span id="E-count">0</span>
+        <button onclick="increaseCount('E')">+</button>
+        <button onclick="decreaseCount('E')">-</button>
+    </div>
+
+    <div class="item">
+        <span>外婆菜肉酱煲仔饭: </span>
+        <span id="F-count">0</span>
+        <button onclick="increaseCount('F')">+</button>
+        <button onclick="decreaseCount('F')">-</button>
+    </div>
+
+    <div class="item">
+        <span>泡椒鸡杂煲仔饭: </span>
+        <span id="G-count">0</span>
+        <button onclick="increaseCount('G')">+</button>
+        <button onclick="decreaseCount('G')">-</button>
+    </div>
+    <div class="item">
+        <button onclick="clearCounts()">清空</button>
+    </div>
+    <script>
+        for (var item of ['A', 'B', 'C', 'D', 'E', 'F', 'G']) {
+            var count = localStorage.getItem(item);
+            if (count == null)
+                count = 0;
+            var countElement = document.getElementById(item + '-count');
+            countElement.textContent = count;
+        }
+    </script>
+</body>
+
+</html>
