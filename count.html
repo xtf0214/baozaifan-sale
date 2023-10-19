@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>销售统计</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 40px;
+            text-align: center;
+            transform-origin: top left;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .item span {
+            font-weight: bold;
+            margin-left: 60px;
+            margin-right: 60px;
+            transform: scale(2);
+        }
+
+        .item button {
+            font-size: 14px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            margin-left: 20px;
+            margin-right: 20px;
+            transform: scale(2);
+            transition: background-color 0.3s;
+        }
+
+        .item button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>销售统计</h1>
+
+    <div class="item">
+        <span>广式腊味煲仔饭: </span>
+        <span id="A-count">0</span>
+    </div>
+
+    <div class="item">
+        <span>蒜香排骨煲仔饭: </span>
+        <span id="B-count">0</span>
+    </div>
+
+    <div class="item">
+        <span>香辣肥牛煲仔饭: </span>
+        <span id="C-count">0</span>
+    </div>
+
+    <div class="item">
+        <span>香菇滑鸡煲仔饭: </span>
+        <span id="D-count">0</span>
+    </div>
+
+    <div class="item">
+        <span>梅菜肉饼煲仔饭: </span>
+        <span id="E-count">0</span>
+    </div>
+
+    <div class="item">
+        <span>外婆菜酱煲仔饭: </span>
+        <span id="F-count">0</span>
+    </div>
+
+    <div class="item">
+        <span>泡椒鸡杂煲仔饭: </span>
+        <span id="G-count">0</span>
+    </div>
+    <div class="item">
+        <span>总销售个数: </span>
+        <span id="total-count">0</span>
+    </div>
+    <div class="item">
+        <span>总销售额: </span>
+        <span id="sale-count">0</span>
+    </div>
+    <script>
+        var total = 0;
+        var sale = 0;
+        var price = {
+            'A': 15,
+            'B': 15,
+            'C': 15,
+            'D': 13,
+            'E': 13,
+            'F': 11,
+            'G': 11,
+        };
+        for (var item of ['A', 'B', 'C', 'D', 'E', 'F', 'G']) {
+            var countElement = document.getElementById(item + '-count');
+            count = parseInt(localStorage.getItem(item + 'saled'));
+            countElement.innerText = count;
+            total += count;
+            sale += count * price[item];
+            console.log(price[item]);
+        }
+        var countElement = document.getElementById('total-count');
+        countElement.innerText = total;
+        console.log(sale);
+        var saleElement = document.getElementById('sale-count');
+        saleElement.innerText = sale;
+    </script>
+</body>
+
+</html>

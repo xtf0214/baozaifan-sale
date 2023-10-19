@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>物品数量</title>
+    <title>煲仔饭售卖系统</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
-            padding: 20px;
+            padding: 40px;
             text-align: center;
             transform-origin: top left;
         }
@@ -27,19 +27,19 @@
 
         .item span {
             font-weight: bold;
-            margin-right: 40px;
-            margin-left: 40px;
+            margin-left: 60px;
+            margin-right: 60px;
             transform: scale(2);
         }
 
         .item button {
-            padding: 5px 10px;
             font-size: 14px;
             border: none;
             background-color: #4CAF50;
             color: white;
             cursor: pointer;
-            margin: 0 20px;
+            margin-left: 20px;
+            margin-right: 20px;
             transform: scale(2);
             transition: background-color 0.3s;
         }
@@ -49,29 +49,32 @@
         }
     </style>
     <script>
-        function increaseCount(item) {
+        function increaseNum(item, num) {
             console.log("increase" + item);
             var countElement = document.getElementById(item + '-count');
             var count = parseInt(countElement.innerText);
-            countElement.innerText = count + 1;
-            localStorage.setItem(item, count + 1);
+            countElement.innerText = count + num;
+            localStorage.setItem(item, count + num);
         }
 
-        function decreaseCount(item) {
+        function decreaseNum(item) {
             console.log("decrease" + item);
             var countElement = document.getElementById(item + '-count');
             var count = parseInt(countElement.innerText);
             if (count > 0) {
                 countElement.innerText = count - 1;
+                saled = parseInt(localStorage.getItem(item + 'saled'));
                 localStorage.setItem(item, count - 1);
+                localStorage.setItem(item + 'saled', saled + 1);
             }
         }
-        function clearCounts() {
+        function clearNum() {
             console.log("clear");
             for (var item of ['A', 'B', 'C', 'D', 'E', 'F', 'G']) {
                 var countElement = document.getElementById(item + '-count');
                 countElement.innerText = 0;
                 localStorage.setItem(item, 0);
+                localStorage.setItem(item + 'saled', 0);
             }
         }
     </script>
@@ -81,55 +84,67 @@
     <h1>剩余菜量</h1>
 
     <div class="item">
+        <button onclick="increaseNum('A', 1)">+1</button>
+        <button onclick="increaseNum('A', 4)">+4</button>
         <span>广式腊味煲仔饭: </span>
         <span id="A-count">0</span>
-        <button onclick="increaseCount('A')">+</button>
-        <button onclick="decreaseCount('A')">-</button>
+        <button onclick="decreaseNum('A')">-1</button>
     </div>
 
     <div class="item">
+        <button onclick="increaseNum('B', 1)">+1</button>
+        <button onclick="increaseNum('B', 4)">+4</button>
         <span>蒜香排骨煲仔饭: </span>
         <span id="B-count">0</span>
-        <button onclick="increaseCount('B')">+</button>
-        <button onclick="decreaseCount('B')">-</button>
+        <button onclick="decreaseNum('B')">-1</button>
     </div>
 
     <div class="item">
+        <button onclick="increaseNum('C', 1)">+1</button>
+        <button onclick="increaseNum('C', 4)">+4</button>
         <span>香辣肥牛煲仔饭: </span>
         <span id="C-count">0</span>
-        <button onclick="increaseCount('C')">+</button>
-        <button onclick="decreaseCount('C')">-</button>
+        <button onclick="decreaseNum('C')">-1</button>
     </div>
 
     <div class="item">
+        <button onclick="increaseNum('D', 1)">+1</button>
+        <button onclick="increaseNum('D', 4)">+4</button>
         <span>香菇滑鸡煲仔饭: </span>
         <span id="D-count">0</span>
-        <button onclick="increaseCount('D')">+</button>
-        <button onclick="decreaseCount('D')">-</button>
+        <button onclick="decreaseNum('D')">-1</button>
     </div>
 
     <div class="item">
-        <span>梅干菜肉饼煲仔饭: </span>
+        <button onclick="increaseNum('E', 1)">+1</button>
+        <button onclick="increaseNum('E', 4)">+4</button>
+        <span>梅菜肉饼煲仔饭: </span>
         <span id="E-count">0</span>
-        <button onclick="increaseCount('E')">+</button>
-        <button onclick="decreaseCount('E')">-</button>
+        <button onclick="decreaseNum('E')">-1</button>
     </div>
 
     <div class="item">
-        <span>外婆菜肉酱煲仔饭: </span>
+        <button onclick="increaseNum('F', 1)">+1</button>
+        <button onclick="increaseNum('F', 4)">+4</button>
+        <span>外婆菜酱煲仔饭: </span>
         <span id="F-count">0</span>
-        <button onclick="increaseCount('F')">+</button>
-        <button onclick="decreaseCount('F')">-</button>
+        <button onclick="decreaseNum('F')">-1</button>
     </div>
 
     <div class="item">
+        <button onclick="increaseNum('G', 1)">+1</button>
+        <button onclick="increaseNum('G', 4)">+4</button>
         <span>泡椒鸡杂煲仔饭: </span>
         <span id="G-count">0</span>
-        <button onclick="increaseCount('G')">+</button>
-        <button onclick="decreaseCount('G')">-</button>
+        <button onclick="decreaseNum('G')">-1</button>
     </div>
     <div class="item">
-        <button onclick="clearCounts()">清空</button>
+        <button onclick="clearNum()">清空</button>
+    </div>
+    <div class="item">
+        <a href="./count.html">
+            <button>统计</button>
+        </a>
     </div>
     <script>
         for (var item of ['A', 'B', 'C', 'D', 'E', 'F', 'G']) {
