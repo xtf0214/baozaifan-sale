@@ -3,164 +3,114 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>煲仔饭售卖系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>出餐</title>
+    <script src="main.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            padding: 40px;
-            text-align: center;
-            transform-origin: top left;
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #1976D2;
         }
 
+        li {
+            float: left;
+        }
+        li a {
+            display: block;
+            color: white;
+            padding: 16px;
+            text-align: center;
+            font-size: 24px;
+            text-decoration: none;
+        }
+    </style>
+    <style>
         h1 {
-            color: #333;
+            text-align: center;
+        }
+
+        .menu {
+            margin: auto;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            width: 80%;
+            border: 2px solid #757575;
+            display: grid;
+            grid-template-columns: repeat(2, 50%);
         }
 
         .item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 40px;
-            margin-bottom: 40px;
+            font-size: 40px;
+            height: 150px;
         }
 
-        .item span {
-            font-weight: bold;
-            margin-left: 60px;
-            margin-right: 60px;
-            transform: scale(2);
-        }
-
-        .item button {
-            font-size: 14px;
-            border: none;
-            background-color: #4CAF50;
+        button {
+            background-color: #2196F3;
             color: white;
-            cursor: pointer;
-            margin-left: 20px;
-            margin-right: 20px;
-            transform: scale(2);
-            transition: background-color 0.3s;
+            box-sizing: content-box;
+            border-radius: 10px;
+            margin: 5px;
+            font-size: 150%;
         }
 
-        .item button:hover {
-            background-color: #45a049;
+        table,
+        td {
+            margin: auto;
+            font-size: 24px;
+            border: 1px solid #757575;
         }
     </style>
-    <script>
-        function increaseNum(item, num) {
-            console.log("increase" + item);
-            var countElement = document.getElementById(item + '-count');
-            var count = parseInt(countElement.innerText);
-            countElement.innerText = count + num;
-            localStorage.setItem(item, count + num);
-        }
-
-        function decreaseNum(item) {
-            console.log("decrease" + item);
-            var countElement = document.getElementById(item + '-count');
-            var count = parseInt(countElement.innerText);
-            if (count > 0) {
-                countElement.innerText = count - 1;
-                saled = parseInt(localStorage.getItem(item + 'saled'));
-                localStorage.setItem(item, count - 1);
-                localStorage.setItem(item + 'saled', saled + 1);
-            }
-        }
-        function clearNum() {
-            console.log("clear");
-            for (var item of ['A', 'B', 'C', 'D', 'E', 'F', 'G']) {
-                var countElement = document.getElementById(item + '-count');
-                countElement.innerText = 0;
-                localStorage.setItem(item, 0);
-                localStorage.setItem(item + 'saled', 0);
-            }
-        }
-    </script>
 </head>
 
 <body>
+    <ul>
+        <li><a href="/adjust.html">入库</a></li>
+        <li><a href="/index.html">出餐</a></li>
+        <li><a href="/count.html">统计</a></li>
+    </ul>
     <h1>剩余菜量</h1>
-
-    <div class="item">
-        <button onclick="increaseNum('A', 1)">+1</button>
-        <button onclick="increaseNum('A', 4)">+4</button>
-        &nbsp;
-        <span>广式腊味煲仔饭: </span>
-        <span id="A-count">0</span>
-        <button onclick="decreaseNum('A')">-1</button>
+    <div class="menu">
+        <button class="item" onclick="saleItem('腊味')">
+            <span>腊味: </span><br>
+            <span id="腊味">0</span>
+        </button>
+        <button class="item" onclick="saleItem('排骨')">
+            <span>排骨: </span><br>
+            <span id="排骨">0</span>
+        </button>
+        <button class="item" onclick="saleItem('肥牛')">
+            <span>肥牛: </span><br>
+            <span id="肥牛">0</span>
+        </button>
+        <button class="item" onclick="saleItem('滑鸡')">
+            <span>滑鸡: </span><br>
+            <span id="滑鸡">0</span>
+        </button>
+        <button class="item" onclick="saleItem('梅干菜')">
+            <span>梅干菜: </span><br>
+            <span id="梅干菜">0</span>
+        </button>
+        <button class="item" onclick="saleItem('鸡杂')">
+            <span>鸡杂: </span><br>
+            <span id="鸡杂">0</span>
+        </button>
+        <button class="item" onclick="saleItem('外婆菜')">
+            <span>外婆菜: </span><br>
+            <span id="外婆菜">0</span>
+        </button>
     </div>
-
-    <div class="item">
-        <button onclick="increaseNum('B', 1)">+1</button>
-        <button onclick="increaseNum('B', 4)">+4</button>
-        &nbsp;
-        <span>蒜香排骨煲仔饭: </span>
-        <span id="B-count">0</span>
-        <button onclick="decreaseNum('B')">-1</button>
+    <div style="text-align: center;" onclick="revoke()">
+        <button style="font-size: 24px;">撤销</button>
     </div>
-
-    <div class="item">
-        <button onclick="increaseNum('C', 1)">+1</button>
-        <button onclick="increaseNum('C', 4)">+4</button>
-        &nbsp;
-        <span>香辣肥牛煲仔饭: </span>
-        <span id="C-count">0</span>
-        <button onclick="decreaseNum('C')">-1</button>
-    </div>
-
-    <div class="item">
-        <button onclick="increaseNum('D', 1)">+1</button>
-        <button onclick="increaseNum('D', 4)">+4</button>
-        &nbsp;
-        <span>香菇滑鸡煲仔饭: </span>
-        <span id="D-count">0</span>
-        <button onclick="decreaseNum('D')">-1</button>
-    </div>
-
-    <div class="item">
-        <button onclick="increaseNum('E', 1)">+1</button>
-        <button onclick="increaseNum('E', 4)">+4</button>
-        &nbsp;
-        <span>梅菜肉饼煲仔饭: </span>
-        <span id="E-count">0</span>
-        <button onclick="decreaseNum('E')">-1</button>
-    </div>
-
-    <div class="item">
-        <button onclick="increaseNum('F', 1)">+1</button>
-        <button onclick="increaseNum('F', 4)">+4</button>
-        &nbsp;
-        <span>外婆菜酱煲仔饭: </span>
-        <span id="F-count">0</span>
-        <button onclick="decreaseNum('F')">-1</button>
-    </div>
-
-    <div class="item">
-        <button onclick="increaseNum('G', 1)">+1</button>
-        <button onclick="increaseNum('G', 4)">+4</button>
-        &nbsp;
-        <span>泡椒鸡杂煲仔饭: </span>
-        <span id="G-count">0</span>
-        <button onclick="decreaseNum('G')">-1</button>
-    </div>
-    <div class="item">
-        <button onclick="clearNum()">清空</button>
-    </div>
-    <div class="item">
-        <a href="./count.html">
-            <button>统计</button>
-        </a>
+    <div style="width: 80%;margin: 20px auto;">
+        <table id="saledList"></table>
     </div>
     <script>
-        for (var item of ['A', 'B', 'C', 'D', 'E', 'F', 'G']) {
-            var count = localStorage.getItem(item);
-            if (count == null)
-                count = 0;
-            var countElement = document.getElementById(item + '-count');
-            countElement.textContent = count;
-        }
+        init();
+        initList();
     </script>
 </body>
 

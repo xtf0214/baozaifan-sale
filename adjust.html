@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>统计</title>
+    <title>入库</title>
     <script src="main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         ul {
             list-style-type: none;
@@ -18,7 +17,6 @@
         li {
             float: left;
         }
-
         li a {
             display: block;
             color: white;
@@ -40,8 +38,17 @@
 
         .item {
             margin: 8px auto;
-            border: 1px solid #757575;
+            border: 2px solid #757575;
             font-size: 24px;
+        }
+
+        button {
+            background-color: #2196F3;
+            color: white;
+            box-sizing: content-box;
+            border-radius: 10px;
+            margin: 5px;
+            font-size: 150%;
         }
     </style>
 </head>
@@ -52,83 +59,64 @@
         <li><a href="/index.html">出餐</a></li>
         <li><a href="/count.html">统计</a></li>
     </ul>
-    <h1>统计</h1>
-
-    <canvas id="saledCount"></canvas>
-    <script>saledCount();</script>
-
-    <canvas id="timeCount"></canvas>
-    <script>timeCount();</script>
-
-    <canvas id="dayCount"></canvas>
-    <canvas id="daySaled"></canvas>
-    <script>
-
-    </script>
-    <!-- <div class="menu">
+    <h1>入库</h1>
+    <div class="menu">
         <div class="item">
+            <button onclick="changeNum('腊味', 3)">+3</button>
+            <button onclick="changeNum('腊味', 1)">+1</button>
+            <button onclick="changeNum('腊味', -1)">-1</button>
             <span>腊味: </span>
             <span id="腊味">0</span>
         </div>
         <div class="item">
+            <button onclick="changeNum('排骨', 3)">+3</button>
+            <button onclick="changeNum('排骨', 1)">+1</button>
+            <button onclick="changeNum('排骨', -1)">-1</button>
             <span>排骨: </span>
             <span id="排骨">0</span>
         </div>
         <div class="item">
+            <button onclick="changeNum('肥牛', 3)">+3</button>
+            <button onclick="changeNum('肥牛', 1)">+1</button>
+            <button onclick="changeNum('肥牛', -1)">-1</button>
             <span>肥牛: </span>
             <span id="肥牛">0</span>
         </div>
         <div class="item">
+            <button onclick="changeNum('滑鸡', 3)">+3</button>
+            <button onclick="changeNum('滑鸡', 1)">+1</button>
+            <button onclick="changeNum('滑鸡', -1)">-1</button>
             <span>滑鸡: </span>
             <span id="滑鸡">0</span>
         </div>
         <div class="item">
+            <button onclick="changeNum('梅干菜', 3)">+3</button>
+            <button onclick="changeNum('梅干菜', 1)">+1</button>
+            <button onclick="changeNum('梅干菜', -1)">-1</button>
             <span>梅干菜: </span>
             <span id="梅干菜">0</span>
         </div>
         <div class="item">
+            <button onclick="changeNum('鸡杂', 3)">+3</button>
+            <button onclick="changeNum('鸡杂', 1)">+1</button>
+            <button onclick="changeNum('鸡杂', -1)">-1</button>
             <span>鸡杂: </span>
             <span id="鸡杂">0</span>
         </div>
         <div class="item">
+            <button onclick="changeNum('外婆菜', 3)">+3</button>
+            <button onclick="changeNum('外婆菜', 1)">+1</button>
+            <button onclick="changeNum('外婆菜', -1)">-1</button>
             <span>外婆菜: </span>
             <span id="外婆菜">0</span>
         </div>
-        <div class="item">
-            <span>总计: </span>
-            <span id="saledNum">0</span>
+        <div style="text-align: center;">
+            <button onclick="clearNum()">清空</button>
         </div>
-        <div class="item">
-            <span>总销售额: </span>
-            <span id="sale-count">0</span>
-        </div>
-    </div> -->
-    <!-- <script>
-        var total = 0;
-        var sale = 0;
-        var price = {
-            'A': 15,
-            'B': 15,
-            'C': 15,
-            'D': 13,
-            'E': 13,
-            'F': 11,
-            'G': 11,
-        };
-        for (var item of ['A', 'B', 'C', 'D', 'E', 'F', 'G']) {
-            var countElement = document.getElementById(item + '-count');
-            count = parseInt(localStorage.getItem(item + 'saled'));
-            countElement.innerText = count;
-            total += count;
-            sale += count * price[item];
-            console.log(price[item]);
-        }
-        var countElement = document.getElementById('total-count');
-        countElement.innerText = total;
-        console.log(sale);
-        var saleElement = document.getElementById('sale-count');
-        saleElement.innerText = sale;
-    </script> -->
+    </div>
+    <script>
+        init();
+    </script>
 </body>
 
 </html>
