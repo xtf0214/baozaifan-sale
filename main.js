@@ -2,7 +2,7 @@ const menu = ['腊味', '排骨', '肥牛', '滑鸡', '梅干菜', '鸡杂', '�
 const price = {
     '腊味': 15, '排骨': 15, '肥牛': 15, '滑鸡': 13, '梅干菜': 13, '鸡杂': 11, '外婆菜': 11
 };
-function init() {
+function initRest() {
     var today = new Date().toLocaleDateString();
     console.log(today);
     if (localStorage.getItem(today) == null) {
@@ -16,6 +16,10 @@ function init() {
     }
 }
 function initList() {
+    for (let item of menu) {
+        let curElement = document.getElementById(item).parentNode;
+        
+    }
     table = document.getElementById('saledList');
     for (var i = table.rows.length - 1; i >= 0; i--)
         table.removeChild(table.rows[i]);

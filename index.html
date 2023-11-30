@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>出餐</title>
     <script src="main.js"></script>
     <style>
@@ -42,20 +42,24 @@
             grid-template-columns: repeat(2, 50%);
         }
 
-        .item {
-            font-size: 40px;
+
+        .rest {
+            background-color: #2196F3;
+            color: white;
+            box-sizing: content-box;
+            border-radius: 10px;
+            margin: 5px;
+            font-size: 60px;
             height: 150px;
         }
-
-        button {
-            background-color: #2196F3;
+        .empty {
+            background-color: #757575;
             color: white;
             box-sizing: content-box;
             border-radius: 10px;
             margin: 5px;
             font-size: 150%;
         }
-
         table,
         td {
             margin: auto;
@@ -73,31 +77,31 @@
     </ul>
     <h1>剩余菜量</h1>
     <div class="menu">
-        <button class="item" onclick="saleItem('腊味')">
+        <button class="rest" onclick="saleItem('腊味')">
             <span>腊味: </span><br>
             <span id="腊味">0</span>
         </button>
-        <button class="item" onclick="saleItem('排骨')">
+        <button class="rest" onclick="saleItem('排骨')">
             <span>排骨: </span><br>
             <span id="排骨">0</span>
         </button>
-        <button class="item" onclick="saleItem('肥牛')">
+        <button class="rest" onclick="saleItem('肥牛')">
             <span>肥牛: </span><br>
             <span id="肥牛">0</span>
         </button>
-        <button class="item" onclick="saleItem('滑鸡')">
+        <button class="rest" onclick="saleItem('滑鸡')">
             <span>滑鸡: </span><br>
             <span id="滑鸡">0</span>
         </button>
-        <button class="item" onclick="saleItem('梅干菜')">
+        <button class="rest" onclick="saleItem('梅干菜')">
             <span>梅干菜: </span><br>
             <span id="梅干菜">0</span>
         </button>
-        <button class="item" onclick="saleItem('鸡杂')">
+        <button class="rest" onclick="saleItem('鸡杂')">
             <span>鸡杂: </span><br>
             <span id="鸡杂">0</span>
         </button>
-        <button class="item" onclick="saleItem('外婆菜')">
+        <button class="rest" onclick="saleItem('外婆菜')">
             <span>外婆菜: </span><br>
             <span id="外婆菜">0</span>
         </button>
@@ -109,7 +113,7 @@
         <table id="saledList"></table>
     </div>
     <script>
-        init();
+        initRest();
         initList();
     </script>
 </body>
