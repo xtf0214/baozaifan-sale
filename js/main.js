@@ -58,8 +58,8 @@ let app = new Vue({
                 item.quantity = 0;
             });
             this.soldList.splice(0, this.soldList.length);
-            this.saveData();
+            const today = new Date().toLocaleDateString();
+            localStorage.removeItem(today);
         },
-
     }
 });
