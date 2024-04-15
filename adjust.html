@@ -1,35 +1,16 @@
 <!DOCTYPE html>
+<html>
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>入库</title>
-    <script src="main.js"></script>
+    <script src="js/vue.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/navbar.css">
     <style>
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #1976D2;
-        }
-
-        li {
-            float: left;
-        }
-
-        li a {
-            display: block;
-            color: white;
-            padding: 16px;
-            text-align: center;
-            font-size: 24px;
-            text-decoration: none;
-        }
-    </style>
-    <style>
-        h1 {
-            text-align: center;
+        .menu {
+            margin: auto;
+            width: 90%;
         }
 
         .item {
@@ -50,69 +31,28 @@
 </head>
 
 <body>
-    <ul>
-        <li><a href="./adjust.html">入库</a></li>
-        <li><a href="./index.html">出餐</a></li>
-        <li><a href="./count.html">统计</a></li>
-    </ul>
-    <h1>入库</h1>
-    <div class="menu">
-        <div class="item">
-            <button onclick="changeNum('腊味', 3)">+3</button>
-            <button onclick="changeNum('腊味', 1)">+1</button>
-            <button onclick="changeNum('腊味', -1)">-1</button>
-            <span>腊味: </span>
-            <span id="腊味">0</span>
-        </div>
-        <div class="item">
-            <button onclick="changeNum('排骨', 3)">+3</button>
-            <button onclick="changeNum('排骨', 1)">+1</button>
-            <button onclick="changeNum('排骨', -1)">-1</button>
-            <span>排骨: </span>
-            <span id="排骨">0</span>
-        </div>
-        <div class="item">
-            <button onclick="changeNum('肥牛', 3)">+3</button>
-            <button onclick="changeNum('肥牛', 1)">+1</button>
-            <button onclick="changeNum('肥牛', -1)">-1</button>
-            <span>肥牛: </span>
-            <span id="肥牛">0</span>
-        </div>
-        <div class="item">
-            <button onclick="changeNum('滑鸡', 3)">+3</button>
-            <button onclick="changeNum('滑鸡', 1)">+1</button>
-            <button onclick="changeNum('滑鸡', -1)">-1</button>
-            <span>滑鸡: </span>
-            <span id="滑鸡">0</span>
-        </div>
-        <div class="item">
-            <button onclick="changeNum('梅干菜', 3)">+3</button>
-            <button onclick="changeNum('梅干菜', 1)">+1</button>
-            <button onclick="changeNum('梅干菜', -1)">-1</button>
-            <span>梅干菜: </span>
-            <span id="梅干菜">0</span>
-        </div>
-        <div class="item">
-            <button onclick="changeNum('鸡杂', 3)">+3</button>
-            <button onclick="changeNum('鸡杂', 1)">+1</button>
-            <button onclick="changeNum('鸡杂', -1)">-1</button>
-            <span>鸡杂: </span>
-            <span id="鸡杂">0</span>
-        </div>
-        <div class="item">
-            <button onclick="changeNum('外婆菜', 3)">+3</button>
-            <button onclick="changeNum('外婆菜', 1)">+1</button>
-            <button onclick="changeNum('外婆菜', -1)">-1</button>
-            <span>外婆菜: </span>
-            <span id="外婆菜">0</span>
-        </div>
-        <div style="text-align: center;">
-            <button onclick="clearNum()">清空</button>
+    <div id="app">
+
+        <ul>
+            <li><a href="./adjust.html">入库</a></li>
+            <li><a href="./index.html">出餐</a></li>
+            <li><a href="./count.html">统计</a></li>
+        </ul>
+        <h1>入库</h1>
+        <div class="menu">
+            <div class="item" v-for="item in menuItems" :key="item.name">
+                <button @click="changeNum(item.name, 3)">+3</button>
+                <button @click="changeNum(item.name, 1)">+1</button>
+                <button @click="changeNum(item.name, -1)">-1</button>
+                <span>{{ item.name }}: </span>
+                <span>{{ item.quantity }}</span>
+            </div>
+            <div style="text-align: center;">
+                <button @click="clearNum()">清空</button>
+            </div>
         </div>
     </div>
-    <script>
-        initRest();
-    </script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

@@ -1,38 +1,14 @@
 <!DOCTYPE html>
-
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>统计</title>
-    <script src="main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/vue.min.js"></script>
+    <script src="js/chart.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/navbar.css">
     <style>
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #1976D2;
-        }
-
-        li {
-            float: left;
-        }
-
-        li a {
-            display: block;
-            color: white;
-            padding: 16px;
-            text-align: center;
-            font-size: 24px;
-            text-decoration: none;
-        }
-    </style>
-    <style>
-        h1 {
-            text-align: center;
-        }
-
         .menu {
             margin: auto;
             width: 80%;
@@ -65,70 +41,6 @@
     <script>
 
     </script>
-    <!-- <div class="menu">
-        <div class="item">
-            <span>腊味: </span>
-            <span id="腊味">0</span>
-        </div>
-        <div class="item">
-            <span>排骨: </span>
-            <span id="排骨">0</span>
-        </div>
-        <div class="item">
-            <span>肥牛: </span>
-            <span id="肥牛">0</span>
-        </div>
-        <div class="item">
-            <span>滑鸡: </span>
-            <span id="滑鸡">0</span>
-        </div>
-        <div class="item">
-            <span>梅干菜: </span>
-            <span id="梅干菜">0</span>
-        </div>
-        <div class="item">
-            <span>鸡杂: </span>
-            <span id="鸡杂">0</span>
-        </div>
-        <div class="item">
-            <span>外婆菜: </span>
-            <span id="外婆菜">0</span>
-        </div>
-        <div class="item">
-            <span>总计: </span>
-            <span id="saledNum">0</span>
-        </div>
-        <div class="item">
-            <span>总销售额: </span>
-            <span id="sale-count">0</span>
-        </div>
-    </div> -->
-    <!-- <script>
-        var total = 0;
-        var sale = 0;
-        var price = {
-            'A': 15,
-            'B': 15,
-            'C': 15,
-            'D': 13,
-            'E': 13,
-            'F': 11,
-            'G': 11,
-        };
-        for (var item of ['A', 'B', 'C', 'D', 'E', 'F', 'G']) {
-            var countElement = document.getElementById(item + '-count');
-            count = parseInt(localStorage.getItem(item + 'saled'));
-            countElement.innerText = count;
-            total += count;
-            sale += count * price[item];
-            console.log(price[item]);
-        }
-        var countElement = document.getElementById('total-count');
-        countElement.innerText = total;
-        console.log(sale);
-        var saleElement = document.getElementById('sale-count');
-        saleElement.innerText = sale;
-    </script> -->
 </body>
 
 </html>

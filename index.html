@@ -3,63 +3,37 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>出餐</title>
-    <script src="main.js"></script>
+    <script src="js/vue.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/navbar.css">
     <style>
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #1976D2;
-        }
-
-        li {
-            float: left;
-        }
-        li a {
-            display: block;
-            color: white;
-            padding: 16px;
-            text-align: center;
-            font-size: 24px;
-            text-decoration: none;
-        }
-    </style>
-    <style>
-        h1 {
-            text-align: center;
-        }
-
         .menu {
             margin: auto;
-            margin-bottom: 20px;
-            margin-top: 20px;
-            width: 80%;
+            width: 90%;
             border: 2px solid #757575;
             display: grid;
             grid-template-columns: repeat(2, 50%);
         }
-
-
-        .rest {
+        button {
             background-color: #2196F3;
             color: white;
             box-sizing: content-box;
             border-radius: 10px;
             margin: 5px;
-            font-size: 45px;
-            height: 150px;
         }
-        .empty {
-            background-color: #757575;
-            color: white;
-            box-sizing: content-box;
-            border-radius: 10px;
-            margin: 5px;
-            font-size: 150%;
+        .onsell {
+            font-size: 2.5em;
+            height: 3.5em;
+            background-color: #2196F3;
         }
+        
+        .sellout {
+            font-size: 2.5em;
+            height: 3.5em;
+            background-color: #808080;
+        }
+
         table,
         td {
             margin: auto;
@@ -70,52 +44,36 @@
 </head>
 
 <body>
-    <ul>
-        <li><a href="./adjust.html">入库</a></li>
-        <li><a href="./index.html">出餐</a></li>
-        <li><a href="./count.html">统计</a></li>
-    </ul>
-    <h1>剩余菜量</h1>
-    <div class="menu">
-        <button class="rest" onclick="saleItem('腊味')">
-            <span>腊味: </span><br>
-            <span id="腊味">0</span>
-        </button>
-        <button class="rest" onclick="saleItem('排骨')">
-            <span>排骨: </span><br>
-            <span id="排骨">0</span>
-        </button>
-        <button class="rest" onclick="saleItem('肥牛')">
-            <span>肥牛: </span><br>
-            <span id="肥牛">0</span>
-        </button>
-        <button class="rest" onclick="saleItem('滑鸡')">
-            <span>滑鸡: </span><br>
-            <span id="滑鸡">0</span>
-        </button>
-        <button class="rest" onclick="saleItem('梅干菜')">
-            <span>梅干菜: </span><br>
-            <span id="梅干菜">0</span>
-        </button>
-        <button class="rest" onclick="saleItem('鸡杂')">
-            <span>鸡杂: </span><br>
-            <span id="鸡杂">0</span>
-        </button>
-        <button class="rest" onclick="saleItem('外婆菜')">
-            <span>外婆菜: </span><br>
-            <span id="外婆菜">0</span>
-        </button>
+    <div id="app">
+        <ul>
+            <li><a href="./adjust.html">入库</a></li>
+            <li><a href="./index.html">出餐</a></li>
+            <li><a href="./count.html">统计</a></li>
+        </ul>
+        <h1>剩余菜量</h1>
+        <div class="menu">
+            <button v-for="item in menuItems" :key="item.name" :class="[item.quantity === 0 ? 'sellout' : 'onsell']"
+                @click="sell(item.name)">
+                <span>{{ item.name }}: </span><br>
+                <span>{{ item.quantity }}</span>
+            </button>
+        </div>
+        <div style="text-align: center;" @click="revoke()">
+            <button style="font-size: 24px;">撤销</button>
+        </div>
+        <div style="width: 80%;margin: 20px auto;">
+            <table id="saledList">
+                <tbody>
+                    <tr v-for="(item, index) in soldList" :key="index">
+                        <td>{{ soldList.length - index }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.time }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div style="text-align: center;" onclick="revoke()">
-        <button style="font-size: 24px;">撤销</button>
-    </div>
-    <div style="width: 80%;margin: 20px auto;">
-        <table id="saledList"></table>
-    </div>
-    <script>
-        initRest();
-        initList();
-    </script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
