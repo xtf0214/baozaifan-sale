@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>出餐</title>
-    <script src="js/vue.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/navbar.css">
     <style>
         .menu {
@@ -15,6 +14,7 @@
             display: grid;
             grid-template-columns: repeat(2, 50%);
         }
+
         button {
             background-color: #2196F3;
             color: white;
@@ -22,12 +22,13 @@
             border-radius: 10px;
             margin: 5px;
         }
+
         .onsell {
             font-size: 2.5em;
             height: 3.5em;
             background-color: #2196F3;
         }
-        
+
         .sellout {
             font-size: 2.5em;
             height: 3.5em;
@@ -41,6 +42,7 @@
             border: 1px solid #757575;
         }
     </style>
+    <script src="js/vue.min.js"></script>
 </head>
 
 <body>
@@ -53,17 +55,17 @@
         <h1>剩余菜量</h1>
         <div class="menu">
             <button v-for="item in menuItems" :key="item.name" :class="[item.quantity === 0 ? 'sellout' : 'onsell']"
-                @click="sell(item.name)">
-                <span>{{ item.name }}: </span><br>
-                <span>{{ item.quantity }}</span>
-            </button>
-        </div>
-        <div style="text-align: center;" @click="revoke()">
-            <button style="font-size: 24px;">撤销</button>
-        </div>
-        <div style="width: 80%;margin: 20px auto;">
-            <table id="saledList">
-                <tbody>
+            @click="sell(item.name)">
+            <span>{{ item.name }}: </span><br>
+            <span>{{ item.quantity }}</span>
+        </button>
+    </div>
+    <div style="text-align: center;" @click="revoke()">
+        <button style="font-size: 24px;">撤销</button>
+    </div>
+    <div style="width: 80%;margin: 20px auto;">
+        <table id="saledList">
+            <tbody>
                     <tr v-for="(item, index) in soldList" :key="index">
                         <td>{{ soldList.length - index }}</td>
                         <td>{{ item.name }}</td>
@@ -72,8 +74,9 @@
                 </tbody>
             </table>
         </div>
+        <script src="js/main.js"></script>
     </div>
-    <script src="js/main.js"></script>
+
 </body>
 
 </html>

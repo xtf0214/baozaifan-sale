@@ -1,4 +1,4 @@
-let X = new Vue({
+let app = new Vue({
     el: '#app',
     data() {
         return {
@@ -11,7 +11,7 @@ let X = new Vue({
                 // { name: '鸡杂', quantity: 0, price: 11 },
                 { name: '外婆菜', quantity: 0, price: 11 }
             ],
-            soldList: []
+            soldList: [],
         };
     },
     created() {
@@ -59,81 +59,7 @@ let X = new Vue({
             });
             this.soldList.splice(0, this.soldList.length);
             this.saveData();
-        }
+        },
+
     }
 });
-
-function saledCount() {
-    const today = new Date().toLocaleDateString();
-    const menuItems = JSON.parse(localStorage.getItem(today)).menuItems;
-    const names = menuItems.map(item => item.name);
-    const quantities = menuItems.map(item => item.quantity);
-    const saledCountctx = document.getElementById('saledCount');
-    new Chart(saledCountctx, {
-        type: 'bar',
-        data: {
-            labels: names,
-            datasets: [{
-                label: '数量',
-                data: quantities,
-                borderWidth: 2
-            }]
-        },
-    });
-}
-
-function timeCount() {
-    const today = new Date().toLocaleDateString();
-    const soldList = JSON.parse(localStorage.getItem(today)).soldList;
-    const times = soldList.map(item => item.time);
-    var startTime = times[times.length - 1].substring(0, 5);
-    var endTime = times[0].substring(0, 5);
-    var timeRange = generateTimeRange(startTime, endTime);
-    var salesCountByTime = {};
-
-    timeRange.forEach(function (time) {
-        salesCountByTime[time] = 0;
-    });
-
-    times.forEach(function (item) {
-        var time = item.substring(0, 5);
-        salesCountByTime[time]++;
-    });
-
-    const timeCountctx = document.getElementById('timeCount');
-    new Chart(timeCountctx, {
-        type: 'bar',
-        data: {
-            labels: Object.keys(salesCountByTime),
-            datasets: [{
-                label: '数量',
-                data: Object.values(salesCountByTime),
-                borderWidth: 2
-            }]
-        },
-    });
-}
-// 生成完整的时间范围
-function generateTimeRange(startTime, endTime) {
-    var timeRange = [];
-    var currentTime = startTime;
-    while (currentTime <= endTime) {
-        timeRange.push(currentTime);
-        var parts = currentTime.split(":");
-        var minutes = parseInt(parts[1]) + 1;
-        if (minutes >= 60) {
-            minutes = 0;
-            var hours = parseInt(parts[0]) + 1;
-            if (hours < 10) {
-                hours = "0" + hours;
-            }
-            currentTime = hours + ":00";
-        } else {
-            if (minutes < 10) {
-                minutes = "0" + minutes;
-            }
-            currentTime = parts[0] + ":" + minutes;
-        }
-    }
-    return timeRange;
-}

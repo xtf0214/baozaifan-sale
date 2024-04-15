@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>统计</title>
-    <script src="js/main.js"></script>
-    <script src="js/vue.min.js"></script>
-    <script src="js/chart.js"></script>
     <link rel="stylesheet" type="text/css" href="css/navbar.css">
     <style>
         .menu {
@@ -20,27 +18,29 @@
             font-size: 24px;
         }
     </style>
+    <script src="js/chart.js"></script>
+    <script src="js/vue.min.js"></script>
 </head>
 
 <body>
-    <ul>
-        <li><a href="./adjust.html">入库</a></li>
-        <li><a href="./index.html">出餐</a></li>
-        <li><a href="./count.html">统计</a></li>
-    </ul>
-    <h1>统计</h1>
-
-    <canvas id="saledCount"></canvas>
-    <script>saledCount();</script>
-
-    <canvas id="timeCount"></canvas>
-    <script>timeCount();</script>
-
-    <canvas id="dayCount"></canvas>
-    <canvas id="daySaled"></canvas>
-    <script>
-
-    </script>
+    <div id="app">
+        <ul>
+            <li><a href="./adjust.html">入库</a></li>
+            <li><a href="./index.html">出餐</a></li>
+            <li><a href="./count.html">统计</a></li>
+        </ul>
+        <h1>统计</h1>
+        <canvas id="soldCount"></canvas>
+        <canvas id="timeCount"></canvas>
+        <canvas id="dayCount"></canvas>
+        <canvas id="daySold"></canvas>
+        <script src="js/count.js"></script>
+        <script>
+            loadData();
+            soldCount();
+            timeCount();
+        </script>
+    </div>
 </body>
 
 </html>
