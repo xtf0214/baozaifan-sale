@@ -41,8 +41,24 @@
             font-size: 24px;
             border: 1px solid #757575;
         }
+
+        .red_cell {
+            background-color: #e49797;
+        }
+
+        .green_cell {
+            background-color: #97e49b;
+        }
+
+        .blue_cell {
+            background-color: #97b6e4;
+        }
+
+        .yello_cell {
+            background-color: #e4e097;
+        }
     </style>
-    <script src="js/vue.min.js"></script>
+    <script src="js/vue2.6.10.js"></script>
 </head>
 
 <body>
@@ -54,20 +70,20 @@
         </ul>
         <h1>剩余菜量</h1>
         <div class="menu">
-            <button v-for="item in menuItems" :key="item.name" :class="[item.quantity === 0 ? 'sellout' : 'onsell']"
-            @click="sell(item.name)">
-            <span>{{ item.name }}: </span><br>
-            <span>{{ item.quantity }}</span>
-        </button>
-    </div>
-    <div style="text-align: center;" @click="revoke()">
-        <button style="font-size: 24px;">撤销</button>
-    </div>
-    <div style="width: 80%;margin: 20px auto;">
-        <table id="saledList">
-            <tbody>
-                    <tr v-for="(item, index) in soldList" :key="index">
-                        <td>{{ soldList.length - index }}</td>
+            <button v-for="item in menuItems" :key="item.name" :class="[item.rest === 0 ? 'sellout' : 'onsell']"
+                @click="sell(item.name)">
+                <span>{{ item.name }}: </span><br>
+                <span>{{ item.rest }}</span>
+            </button>
+        </div>
+        <div style="text-align: center;" @click="revoke()">
+            <button style="font-size: 24px;">撤销</button>
+        </div>
+        <div style="width: 80%;margin: 20px auto;">
+            <table id="saledList">
+                <tbody>
+                    <tr v-for="(item, index) in soldList" :key="index" :style="{ backgroundColor: getClass(item.name) }">
+                        <td>{{ soldList.length - index }}</td>  
                         <td>{{ item.name }}</td>
                         <td>{{ item.time }}</td>
                     </tr>

@@ -27,7 +27,7 @@
             font-size: 150%;
         }
     </style>
-    <script src="js/vue.min.js"></script>
+    <script src="js/vue2.6.10.js"></script>
 </head>
 
 <body>
@@ -45,7 +45,7 @@
                 <button @click="changeNum(item.name, 1)">+1</button>
                 <button @click="changeNum(item.name, -1)">-1</button>
                 <span>{{ item.name }}: </span>
-                <span>{{ item.quantity }}</span>
+                <span>{{ item.rest }}</span>
             </div>
             <div style="text-align: center;">
                 <button @click="clearNum()">清空</button>

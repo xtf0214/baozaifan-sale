@@ -1,11 +1,11 @@
 let menuItems = [
-    { name: '腊味', quantity: 0, price: 15 },
-    { name: '排骨', quantity: 0, price: 15 },
-    { name: '肥牛', quantity: 0, price: 15 },
-    { name: '滑鸡', quantity: 0, price: 13 },
-    { name: '梅干菜', quantity: 0, price: 13 },
-    // { name: '鸡杂', quantity: 0, price: 11 },
-    { name: '外婆菜', quantity: 0, price: 11 }
+    { name: '腊味', rest: 0, sold: 0, price: 15, color: "red-cell" },
+    { name: '排骨', rest: 0, sold: 0, price: 15, color: "green-cell" },
+    { name: '肥牛', rest: 0, sold: 0, price: 15, color: "blue-cell" },
+    { name: '滑鸡', rest: 0, sold: 0, price: 13, color: "" },
+    { name: '梅干菜', rest: 0, sold: 0, price: 13, color: "yello-cell" },
+    // { name: '鸡杂', rest: 0, sold: 0, price: 11 },
+    { name: '外婆菜', rest: 0, sold: 0, price: 11, color: "yello-cell" }
 ];
 let soldList = [];
 
@@ -23,7 +23,7 @@ function loadData() {
 function soldCount() {
     console.log("soldCount");
     const names = menuItems.map(item => item.name);
-    const quantities = menuItems.map(item => item.quantity);
+    const solds = menuItems.map(item => item.sold);
     const saledCountctx = document.getElementById('soldCount');
     new Chart(saledCountctx, {
         type: 'bar',
@@ -31,7 +31,7 @@ function soldCount() {
             labels: names,
             datasets: [{
                 label: '数量',
-                data: quantities,
+                data: solds,
                 borderWidth: 2
             }]
         },
