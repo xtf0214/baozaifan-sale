@@ -21,7 +21,6 @@ function loadData() {
 }
 
 function soldCount() {
-    console.log("soldCount");
     const names = menuItems.map(item => item.name);
     const solds = menuItems.map(item => item.sold);
     const saledCountctx = document.getElementById('soldCount');
@@ -39,14 +38,14 @@ function soldCount() {
 }
 function timeCount() {
     const times = soldList.map(item => item.time);
-    var startTime = times[times.length - 1];
-    var endTime = times[0];
+    var startTime = times[times.length - 1].substring(0, 5);
+    var endTime = times[0].substring(0, 5);
     var timeRange = generateTimeRange(startTime, endTime);
     var soldCountByTime = {};
-    timeRange.forEach(function (time) {
+    timeRange.forEach(time => {
         soldCountByTime[time] = 0;
     });
-    times.forEach(function (item) {
+    times.forEach(item => {
         var time = item.substring(0, 5);
         soldCountByTime[time]++;
     });
@@ -64,12 +63,14 @@ function timeCount() {
     });
 }
 // 生成完整的时间范围
-function generateTimeRange(startTime, endTime) {
-    let timeRange = [];
-    let startMin = parseInt(startTime.substring(0, 2)) * 60 + parseInt(startTime.substring(3, 5));
-    let endMin = parseInt(endTime.substring(0, 2)) * 60 + parseInt(endTime.substring(3, 5));
-    for (let Min = startMin; Min <= endMin; Min++) {
-        timeRange.push(`${parseInt(Min / 60)}:${Min % 60}`);
+function generateTimeRange(start, end) {
+    var startTime = new Date('2000-01-01 ' + start);
+    var endTime = new Date('2000-01-01 ' + end);
+    var timeRange = [];
+    while (startTime <= endTime) {
+      var time = startTime.toTimeString().substring(0, 5);
+      timeRange.push(time);
+      startTime.setMinutes(startTime.getMinutes() + 1);
     }
     return timeRange;
-}
+  }
